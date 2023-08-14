@@ -2,6 +2,8 @@
 input = document.getElementById('input');
 numbers = []
 operators = ['+']
+// isPointBtn = false
+
 function btn9(){
     input.value += 9
 }
@@ -81,4 +83,13 @@ function btnEqual(){
     input.value = ans
     numbers = []
     operators = ['+']
+}
+function btnBS(){
+    let value = input.value;
+    value = value.slice(0, -1);
+    input.value = value
+}
+function btnPoint(){
+    // is
+    // input.value = (Number(input.value) + 0.1)
 }
