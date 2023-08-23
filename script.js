@@ -1,8 +1,7 @@
 
 input = document.getElementById('input');
 numbers = []
-operators = ['+']
-// isPointBtn = false
+operators = []
 
 function btn9(){
     input.value += 9
@@ -35,9 +34,9 @@ function btn0(){
     input.value += 0
 }
 function btnC(){
-    input.value = ""
+    input.value = null
     numbers = []
-    operators = ['+']
+    operators = []
 }
 function btnPlus(){
     numbers.push(Number(input.value))
@@ -60,29 +59,46 @@ function btnDiv(){
     input.value = ""
 }
 function btnEqual(){
-    ans = 0
-    numbers.push(Number(input.value))
-    operators.push('=')
-    for(i = 0; i <= numbers.length; i++){
-        if(operators[i] == '+'){
-            ans += numbers[i]
-        }
-        else if(operators[i] == '-'){
-            ans -= numbers[i]
-        }
-        else if(operators[i] == '*'){
-            ans *= numbers[i]
+    value = Number(input.value);
+    numbers.push(value);
+    operators.push('=');
+    i = 0;
+    while(operators.includes('*') || operators.includes('/')){
+        if(operators[i] == '*'){
+            numbers[i] *= numbers[i + 1]            
+            performOperation(i)
         }
         else if(operators[i] == '/'){
-            ans /= numbers[i]
+            numbers[i] /= numbers[i + 1]            
+            performOperation(i)
         }
         else if(operators[i] == '='){
             break
         }
+        else{
+            i++;
+        }        
     }
-    input.value = ans
+    i = 0;
+    while(operators.includes('+') || operators.includes('-')){
+        if(operators[i] == '+'){
+            numbers[i] += numbers[i + 1]            
+            performOperation(i)
+        }
+        else if(operators[i] == '-'){
+            numbers[i] -= numbers[i + 1]            
+            performOperation(i)
+        }
+        else if(operators[i] == '='){
+            break
+        }
+        else{
+            i++;
+        }        
+    }
+    input.value = numbers[0]
     numbers = []
-    operators = ['+']
+    operators = []
 }
 function btnBS(){
     let value = input.value;
@@ -90,6 +106,24 @@ function btnBS(){
     input.value = value
 }
 function btnPoint(){
-    // is
-    // input.value = (Number(input.value) + 0.1)
+    input.value += '.'
+}
+function performOperation(i){
+    a = numbers.slice(0, i + 1)
+    b = numbers.slice(i + 2)
+    numbers = a.concat(b)
+
+    a = operators.slice(0, i)
+    b = operators.slice(i + 1)
+    operators = a.concat(b)
+}
+
+function ShowCalculator(){
+    document.getElementById('calculator').hidden = false;
+    document.getElementById('popover').hidden = true
+}
+
+function ShowPopover(){
+    document.getElementById('popover').hidden = false;
+    document.getElementById('calculator').hidden = true
 }

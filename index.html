@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-div">
+    <div id="calculator" class="main-div">
         <div class="heading">
             <h1>Calculator</h1>
         </div>
         <div class="input">
-            <input id="input" type="number" readonly>
+            <input id="input" type="text" readonly>
         </div>
         <div class="btns">
             <div class="numbers">
@@ -42,11 +43,22 @@
                 <div>
                     <button onclick="btnPoint()">.</button>
                     <button onclick="btn0()">0</button>
-                    <button id="btn" onclick="btnEqual()" class="equal-btn">=</button>
+                    <button id="btn" onclick="btnEqual(); ShowPopover();" class="equal-btn">=</button>
                 </div>
             </div>
         </div>        
     </div>
+    <div id="popover" class="card text-center" hidden>
+        <h1 class="card-img-top" alt="...">🙅🏻‍♂️🙅🏻‍♂️🙅🏻‍♂️🙅🏻‍♂️</h1>
+        <div class="card-body">
+          <h5 class="card-title">Astaghfirullah</h5>
+          <p class="card-text">کوئی حال نہیں آپ کا، کچھ پڑھ لیا ہوتا تو آج یہ دن نہ دیکھنے پڑتے۔ اتنا آسان سوال خود نہیں حل کرسکتے۔۔۔ بہت افسوس ہوا</p>
+          <p class="card-text">😔😔</p>
+          <a onclick="ShowCalculator()" href="#" class="btn">Close</a>
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
 </html>
